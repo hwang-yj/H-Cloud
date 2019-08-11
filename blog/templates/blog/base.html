@@ -1,0 +1,115 @@
+{% load static %}
+<html>
+    <head>
+
+            <script>
+              function byId(e){return document.getElementById(e);}
+
+
+      function printClock() {
+
+          var clock = document.getElementById("clock");            // 출력할 장소 선택
+          var currentDate = new Date();                                     // 현재시간
+          var calendar = currentDate.getFullYear() + "-" + (currentDate.getMonth()+1) + "-" + currentDate.getDate() // 현재 날짜
+          var amPm = 'AM'; // 초기값 AM
+          var currentHours = addZeros(currentDate.getHours(),2);
+          var currentMinute = addZeros(currentDate.getMinutes() ,2);
+          var currentSeconds =  addZeros(currentDate.getSeconds(),2);
+
+          if(currentHours >= 12){ // 시간이 12보다 클 때 PM으로 세팅, 12를 빼줌
+          	amPm = 'PM';
+          	currentHours = addZeros(currentHours - 12,2);
+          }
+
+          if(currentSeconds >= 50){// 50초 이상일 때 색을 변환해 준다.
+             currentSeconds = '<span style="color:#37CF32;">'+currentSeconds+'</span>'
+          }
+          clock.innerHTML = currentHours+":"+currentMinute+":"+currentSeconds +" <span style='font-size:50px;'>"+ amPm+"</span>"; //날짜를 출력해 줌
+
+          setTimeout("printClock()",1000);         // 1초마다 printClock() 함수 호출
+      }
+      function addZeros(num, digit) { // 자릿수 맞춰주기
+      	  var zero = '';
+      	  num = num.toString();
+      	  if (num.length < digit) {
+      	    for (i = 0; i < digit - num.length; i++) {
+      	      zero += '0';
+      	    }
+      	  }
+      	  return zero + num;
+      }
+
+      </script>
+      <script language="javascript">
+    function changeImage() {
+
+        if (document.getElementById("imgClickAndChange").src == "https://image.flaticon.com/icons/svg/1034/1034609.svg")
+        {
+            document.getElementById("imgClickAndChange").src = "https://image.flaticon.com/icons/svg/1134/1134431.svg";
+        }
+        else
+        {
+            document.getElementById("imgClickAndChange").src = "https://image.flaticon.com/icons/svg/1134/1134431.svg";
+        }
+        }
+      </script>
+
+  <div class="page-header">
+        <h1><a href="/">H-CLOUD__UnderTheSea</a></h1>
+
+        <body onload="printClock()">
+        	<div style="border:0px solid #dedede; width:400px; height:100px; line-height:100px; color:#666;font-size:70px; text-align:center;" id="clock">
+        	</div>
+      </div>
+
+
+      <title>H-CLOUD</title>
+      <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+      <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+      <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+      <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="page-header">
+{% if user.is_authenticated %}
+      <table  border=10 BORDERCOLOR="#0000FF" BORDERCOLORLIGHT="#33CCFF" BORDERCOLORDARK="#0000CC">
+
+
+        <tr>
+          <td> <img alt="" src="https://image.flaticon.com/icons/svg/1034/1034609.svg"
+            style="height: 231px; width: 231px" id="imgClickAndChange" onclick="changeImage()"/></td>
+
+          <td><img src ="https://image.flaticon.com/icons/svg/1134/1134431.svg" width=231 height=231></td>
+
+          <td><img src ="https://image.flaticon.com/icons/svg/1134/1134431.svg" width=231 height=231></td>
+
+          <td><img src ="https://image.flaticon.com/icons/svg/1134/1134431.svg" width=231 height=231></td>
+
+        </tr>
+        <tr align= center>
+          <td> 001</td>
+          <td> 002</td>
+          <td> 003</td>
+          <td> 004</td>
+        </tr>
+
+          <p class="top-menu">Hello {{ user.username }} <small>(<a href="{% url 'logout' %}">Log out</a>)</small></p>
+          {% else %}
+          <a href="{% url 'login' %}" class="top-menu"><span class="glyphicon glyphicon-lock"></span></a>
+          {% endif %}
+          <h1><a href="/">Fish Dogam</a></h1>
+
+  </div>
+  <div class="content container">
+      <div class="row">
+          <div class="col-md-8">
+            {% block content %}
+            {% endblock %}
+          </div>
+      </div>
+  </div>
+
+
+
+    </body>
+</html>
