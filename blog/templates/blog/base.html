@@ -1,115 +1,285 @@
+
+<!doctype html>
 {% load static %}
-<html>
-    <head>
+<html lang="en">
+<!--
 
-            <script>
-              function byId(e){return document.getElementById(e);}
+Page    : index / MobApp
+Version : 1.0
+Author  : Colorlib
+URI     : https://colorlib.com
 
+ -->
 
-      function printClock() {
+<head>
 
-          var clock = document.getElementById("clock");            // 출력할 장소 선택
-          var currentDate = new Date();                                     // 현재시간
-          var calendar = currentDate.getFullYear() + "-" + (currentDate.getMonth()+1) + "-" + currentDate.getDate() // 현재 날짜
-          var amPm = 'AM'; // 초기값 AM
-          var currentHours = addZeros(currentDate.getHours(),2);
-          var currentMinute = addZeros(currentDate.getMinutes() ,2);
-          var currentSeconds =  addZeros(currentDate.getSeconds(),2);
+  <script language="javascript">
+      function changeImage() {
 
-          if(currentHours >= 12){ // 시간이 12보다 클 때 PM으로 세팅, 12를 빼줌
-          	amPm = 'PM';
-          	currentHours = addZeros(currentHours - 12,2);
-          }
-
-          if(currentSeconds >= 50){// 50초 이상일 때 색을 변환해 준다.
-             currentSeconds = '<span style="color:#37CF32;">'+currentSeconds+'</span>'
-          }
-          clock.innerHTML = currentHours+":"+currentMinute+":"+currentSeconds +" <span style='font-size:50px;'>"+ amPm+"</span>"; //날짜를 출력해 줌
-
-          setTimeout("printClock()",1000);         // 1초마다 printClock() 함수 호출
+      if (document.getElementById("imgClickAndChange").src == "https://image.flaticon.com/icons/svg/1034/1034609.svg")
+      {
+          document.getElementById("imgClickAndChange").src = "https://image.flaticon.com/icons/svg/1134/1134431.svg";
       }
-      function addZeros(num, digit) { // 자릿수 맞춰주기
-      	  var zero = '';
-      	  num = num.toString();
-      	  if (num.length < digit) {
-      	    for (i = 0; i < digit - num.length; i++) {
-      	      zero += '0';
-      	    }
-      	  }
-      	  return zero + num;
+      else
+      {
+          document.getElementById("imgClickAndChange").src = "https://image.flaticon.com/icons/svg/1134/1134431.svg";
       }
+      }
+    </script>
 
-      </script>
-      <script language="javascript">
-    function changeImage() {
+    <title>H-Cloud Aquaman Project</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Mobland - Mobile App Landing Page Template">
+    <meta name="keywords" content="HTML5, bootstrap, mobile, app, landing, ios, android, responsive">
 
-        if (document.getElementById("imgClickAndChange").src == "https://image.flaticon.com/icons/svg/1034/1034609.svg")
-        {
-            document.getElementById("imgClickAndChange").src = "https://image.flaticon.com/icons/svg/1134/1134431.svg";
-        }
-        else
-        {
-            document.getElementById("imgClickAndChange").src = "https://image.flaticon.com/icons/svg/1134/1134431.svg";
-        }
-        }
-      </script>
+    <!-- Font -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css?family=Rubik:300,400,500" rel="stylesheet">
 
-  <div class="page-header">
-        <h1><a href="/">H-CLOUD__UnderTheSea</a></h1>
-
-        <body onload="printClock()">
-        	<div style="border:0px solid #dedede; width:400px; height:100px; line-height:100px; color:#666;font-size:70px; text-align:center;" id="clock">
-        	</div>
-      </div>
-
-
-      <title>H-CLOUD</title>
-      <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-      <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-      <link rel="stylesheet" href="{% static 'css/blog.css' %}">
-      <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{%static 'css/bootstrap.min.css' %}">
+    <!-- Themify Icons -->
+    <link rel="stylesheet" href="{%static 'css/themify-icons.css' %}">
+    <!-- Owl carousel -->
+    <link rel="stylesheet" href="{%static 'css/owl.carousel.min.css' %}">
+    <!-- Main css -->
+    <link href="{%static 'css/style.css' %}" rel="stylesheet">
 </head>
-<body>
-<div class="page-header">
+
+<body data-spy="scroll" data-target="#navbar" data-offset="30">
+
+    <!-- Nav Menu -->
+
+    <div class="nav-menu fixed-top">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <nav class="navbar navbar-dark navbar-expand-lg">
+                        <a class="navbar-brand" href="base.html"><img src="{%static 'images/logo.png' %}" class="img-fluid" alt="logo"></a> <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
+                        <div class="collapse navbar-collapse" id="navbar">
+                            <ul class="navbar-nav ml-auto">
+                                <li class="nav-item"> <a class="nav-link active" href="#home">HOME <span class="sr-only">(current)</span></a> </li>
+                                <li class="nav-item"> <a class="nav-link" href="#features">FUNCTION</a> </li>
+                                {% if user.is_authenticated %}
+                                <li class="nav-item"> <a class="nav-link" href="#gallery">GALLERY</a> </li>
+                                <li class="nav-item"> <a class="nav-link" href="{% url 'logout' %}">LOGOUT</a> </li>
+                                {% else %}
+                                <li class="nav-item"> <a class="nav-link" href="{% url 'login' %}">LOGIN</a> </li>
+                                {% endif %}
+
+                            </ul>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <header class="bg-gradient" id="home">
+        <div class="container mt-5">
+            <h1>H-Cloud Aquaman Project</h1>
+            <p class="tagline"> Smart Sea Mobility  </p>
+        </div>
+    </header>
+
+    <div class="section light-bg" id="features">
+
+
+        <div class="container">
+
+            <div class="section-title">
+                <small>Aqua Man</small>
+                <h3>Mobility Function</h3>
+            </div>
+
+
+            <div class="row">
+                <div class="col-12 col-lg-4">
+                    <div class="card features">
+                        <div class="card-body">
+                            <div class="media">
+                                <span class="ti-face-smile gradient-fill ti-3x mr-3"></span>
+                                <div class="media-body">
+                                    <h4 class="card-title">Speed</h4>
+                                    <p class="card-text"> 빠른 속도 </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-4">
+                    <div class="card features">
+                        <div class="card-body">
+                            <div class="media">
+                                <span class="ti-settings gradient-fill ti-3x mr-3"></span>
+                                <div class="media-body">
+                                    <h4 class="card-title">Customize</h4>
+                                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer rutrum, urna eu pellentesque </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-4">
+                    <div class="card features">
+                        <div class="card-body">
+                            <div class="media">
+                                <span class="ti-lock gradient-fill ti-3x mr-3"></span>
+                                <div class="media-body">
+                                    <h4 class="card-title">Secure</h4>
+                                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer rutrum, urna eu pellentesque </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+
+    </div>
+
+
+        </div>
+
+    </div>
+    <!-- // end .section -->
+
+
+
+    <!-- // end .section -->
+
 {% if user.is_authenticated %}
-      <table  border=10 BORDERCOLOR="#0000FF" BORDERCOLORLIGHT="#33CCFF" BORDERCOLORDARK="#0000CC">
+    <div class="section light-bg" id="gallery">
+        <div class="container">
+            <div class="section-title">
+                <small>FISH DICTIONARY</small>
+                <h3>{{user.username}}'s Fish</h3>
+            </div>
+
+            <div class="img-gallery owl-carousel owl-theme">
+
+              <a href="https://namu.wiki/w/흰동가리"><img alt="" src="https://image.flaticon.com/icons/svg/1034/1034609.svg" id="imgClickAndChange" onclick="changeImage()"/></a>
+                <img src="https://image.flaticon.com/icons/svg/1034/1034609.svg" alt="image">
+                <img src="https://image.flaticon.com/icons/svg/1034/1034609.svg" alt="image">
+                <img src="https://image.flaticon.com/icons/svg/1034/1034609.svg" alt="image">
+                <img src="https://image.flaticon.com/icons/svg/1034/1034609.svg" alt="image">
+                <img src="https://image.flaticon.com/icons/svg/1034/1034609.svg" alt="image">
+                <img src="https://image.flaticon.com/icons/svg/1034/1034609.svg" alt="image">
+                <img src="https://image.flaticon.com/icons/svg/1034/1034609.svg" alt="image">
+                <img src="https://image.flaticon.com/icons/svg/1034/1034609.svg" alt="image">
+                <img src="https://image.flaticon.com/icons/svg/1034/1034609.svg" alt="image">
+            </div>
+
+        </div>
+
+    </div>
+  {% endif %}
+<!-- // end .section -->
+
+    <div class="section">
+        <div class="container">
+            <div class="section-title">
+                <small>Makers</small>
+                <h3>What our Makers Says</h3>
+            </div>
+
+            <div class="testimonials owl-carousel">
+                <div class="testimonials-single">
+                    <img src="{%static 'images/client.png' %}" alt="client" class="client-img">
+                    <blockquote class="blockquote">Uniquely streamline highly efficient scenarios and 24/7 initiatives. Conveniently embrace multifunctional ideas through proactive customer service. Distinctively conceptualize 2.0 intellectual capital via user-centric partnerships.</blockquote>
+                    <h5 class="mt-4 mb-2">Crystal Gordon</h5>
+                    <p class="text-primary">United States</p>
+                </div>
+                <div class="testimonials-single">
+                    <img src="{%static 'images/client.png' %}" alt="client" class="client-img">
+                    <blockquote class="blockquote">Uniquely streamline highly efficient scenarios and 24/7 initiatives. Conveniently embrace multifunctional ideas through proactive customer service. Distinctively conceptualize 2.0 intellectual capital via user-centric partnerships.</blockquote>
+                    <h5 class="mt-4 mb-2">Crystal Gordon</h5>
+                    <p class="text-primary">United States</p>
+                </div>
+                <div class="testimonials-single">
+                    <img src="{%static 'images/client.png' %}" alt="client" class="client-img">
+                    <blockquote class="blockquote">Uniquely streamline highly efficient scenarios and 24/7 initiatives. Conveniently embrace multifunctional ideas through proactive customer service. Distinctively conceptualize 2.0 intellectual capital via user-centric partnerships.</blockquote>
+                    <h5 class="mt-4 mb-2">Crystal Gordon</h5>
+                    <p class="text-primary">United States</p>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
 
 
-        <tr>
-          <td> <img alt="" src="https://image.flaticon.com/icons/svg/1034/1034609.svg"
-            style="height: 231px; width: 231px" id="imgClickAndChange" onclick="changeImage()"/></td>
+        </div>
 
-          <td><img src ="https://image.flaticon.com/icons/svg/1134/1134431.svg" width=231 height=231></td>
-
-          <td><img src ="https://image.flaticon.com/icons/svg/1134/1134431.svg" width=231 height=231></td>
-
-          <td><img src ="https://image.flaticon.com/icons/svg/1134/1134431.svg" width=231 height=231></td>
-
-        </tr>
-        <tr align= center>
-          <td> 001</td>
-          <td> 002</td>
-          <td> 003</td>
-          <td> 004</td>
-        </tr>
-
-          <p class="top-menu">Hello {{ user.username }} <small>(<a href="{% url 'logout' %}">Log out</a>)</small></p>
-          {% else %}
-          <a href="{% url 'login' %}" class="top-menu"><span class="glyphicon glyphicon-lock"></span></a>
-          {% endif %}
-          <h1><a href="/">Fish Dogam</a></h1>
-
-  </div>
-  <div class="content container">
-      <div class="row">
-          <div class="col-md-8">
-            {% block content %}
-            {% endblock %}
-          </div>
-      </div>
-  </div>
+    </div>
+    <!-- // end .section -->
 
 
+    <div class="section pt-0">
+        <div class="container">
+            <div class="section-title">
+                <small>FAQ</small>
+                <h3>Frequently Asked Questions</h3>
+            </div>
 
-    </body>
+            <div class="row pt-4">
+                <div class="col-md-6">
+                    <h4 class="mb-3">Can I try before I buy?</h4>
+                    <p class="light-font mb-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer rutrum, urna eu pellentesque pretium, nisi nisi fermentum enim, et sagittis dolor nulla vel sapien. Vestibulum sit amet mattis ante. </p>
+                    <h4 class="mb-3">What payment methods do you accept?</h4>
+                    <p class="light-font mb-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer rutrum, urna eu pellentesque pretium, nisi nisi fermentum enim, et sagittis dolor nulla vel sapien. Vestibulum sit amet mattis ante. </p>
+
+                </div>
+                <div class="col-md-6">
+                    <h4 class="mb-3">Can I change my plan later?</h4>
+                    <p class="light-font mb-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer rutrum, urna eu pellentesque pretium, nisi nisi fermentum enim, et sagittis dolor nulla vel sapien. Vestibulum sit amet mattis ante. </p>
+                    <h4 class="mb-3">Do you have a contract?</h4>
+                    <p class="light-font mb-5">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer rutrum, urna eu pellentesque pretium, nisi nisi fermentum enim, et sagittis dolor nulla vel sapien. Vestibulum sit amet mattis ante. </p>
+
+                </div>
+                <div class="content container">
+                    <div class="row">
+                        <div class="col-md-8">
+                            {% block content %}
+                            {% endblock %}
+                        </div>
+                      </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+    <!-- // end .section -->
+
+    <!-- // end .section -->
+
+    <!-- // end .section -->
+    <footer class="my-5 text-center">
+        <!-- Copyright removal is not prohibited! -->
+        <p class="mb-2"><small>COPYRIGHT © 2017. ALL RIGHTS RESERVED. MOBAPP TEMPLATE BY <a href="https://colorlib.com">COLORLIB</a></small></p>
+
+        <small>
+            <a href="#" class="m-2">PRESS</a>
+            <a href="#" class="m-2">TERMS</a>
+            <a href="#" class="m-2">PRIVACY</a>
+        </small>
+    </footer>
+
+    <!-- jQuery and Bootstrap -->
+    <script src="{%static 'js/jquery-3.2.1.min.js' %}"></script>
+    <script src="{%static 'js/bootstrap.bundle.min.js' %}"></script>
+    <!-- Plugins JS -->
+    <script src="{%static 'js/owl.carousel.min.js' %}"></script>
+    <!-- Custom JS -->
+    <script src="{%static 'js/script.js' %}"></script>
+
+</body>
+
 </html>

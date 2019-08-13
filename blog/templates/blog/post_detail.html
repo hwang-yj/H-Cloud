@@ -1,0 +1,13 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+    <div class="post">
+        {% if post.published_date %}
+            <div class="date">
+
+            </div>
+        {% endif %}
+        <img src ="https://image.flaticon.com/icons/svg/1134/1134431.svg" width=231 height=231>
+        <h1>{{ post.title }}</h1>
+    </div>
+{% endblock %}
