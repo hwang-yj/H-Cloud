@@ -27,6 +27,7 @@ URI     : https://colorlib.com
       }
     </script>
 
+
     <title>H-Cloud Aquaman Project</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -57,7 +58,7 @@ URI     : https://colorlib.com
             <div class="row">
                 <div class="col-md-12">
                     <nav class="navbar navbar-dark navbar-expand-lg">
-                        <a class="navbar-brand" href="base.html"><img src="{%static 'images/logo.png' %}" class="img-fluid" alt="logo"></a> <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
+                        <a class="navbar-brand" ></a> <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation"> <span class="navbar-toggler-icon"></span> </button>
                         <div class="collapse navbar-collapse" id="navbar">
                             <ul class="navbar-nav ml-auto">
                                 <li class="nav-item"> <a class="nav-link active" href="#home">HOME <span class="sr-only">(current)</span></a> </li>
@@ -84,6 +85,32 @@ URI     : https://colorlib.com
             <p class="tagline"> Smart Sea Mobility  </p>
         </div>
     </header>
+    {% if user.is_authenticated %}
+        <div class="section light-bg" id="gallery">
+            <div class="container">
+                <div class="section-title">
+                    <small>FISH DICTIONARY</small>
+                    <h3>{{user.username}}'s Fish</h3>
+                </div>
+
+                <div class="img-gallery owl-carousel owl-theme">
+
+                  <a href="http://192.168.43.177"><img alt="" src="https://image.flaticon.com/icons/svg/1034/1034609.svg" id="imgClickAndChange" onclick="changeImage()"/></a>
+                    <img src="https://image.flaticon.com/icons/svg/1034/1034609.svg" alt="image"onclick="javascript()">
+                    <img src="https://image.flaticon.com/icons/svg/1034/1034609.svg" alt="image">
+                    <img src="https://image.flaticon.com/icons/svg/1034/1034609.svg" alt="image">
+                    <img src="https://image.flaticon.com/icons/svg/1034/1034609.svg" alt="image">
+                    <img src="https://image.flaticon.com/icons/svg/1034/1034609.svg" alt="image">
+                    <img src="https://image.flaticon.com/icons/svg/1034/1034609.svg" alt="image">
+                    <img src="https://image.flaticon.com/icons/svg/1034/1034609.svg" alt="image">
+                    <img src="https://image.flaticon.com/icons/svg/1034/1034609.svg" alt="image">
+                    <img src="https://image.flaticon.com/icons/svg/1034/1034609.svg" alt="image">
+                </div>
+
+            </div>
+
+        </div>
+      {% endif %}
 
     <div class="section light-bg" id="features">
 
@@ -103,7 +130,7 @@ URI     : https://colorlib.com
                             <div class="media">
                                 <span class="ti-face-smile gradient-fill ti-3x mr-3"></span>
                                 <div class="media-body">
-                                    <h4 class="card-title">Speed</h4>
+                                    <a href="www.naver.com"><h4 class="card-title">Speed</h4></a>
                                     <p class="card-text"> 빠른 속도 </p>
                                 </div>
                             </div>
@@ -154,32 +181,7 @@ URI     : https://colorlib.com
 
     <!-- // end .section -->
 
-{% if user.is_authenticated %}
-    <div class="section light-bg" id="gallery">
-        <div class="container">
-            <div class="section-title">
-                <small>FISH DICTIONARY</small>
-                <h3>{{user.username}}'s Fish</h3>
-            </div>
 
-            <div class="img-gallery owl-carousel owl-theme">
-
-              <a href="https://namu.wiki/w/흰동가리"><img alt="" src="https://image.flaticon.com/icons/svg/1034/1034609.svg" id="imgClickAndChange" onclick="changeImage()"/></a>
-                <img src="https://image.flaticon.com/icons/svg/1034/1034609.svg" alt="image">
-                <img src="https://image.flaticon.com/icons/svg/1034/1034609.svg" alt="image">
-                <img src="https://image.flaticon.com/icons/svg/1034/1034609.svg" alt="image">
-                <img src="https://image.flaticon.com/icons/svg/1034/1034609.svg" alt="image">
-                <img src="https://image.flaticon.com/icons/svg/1034/1034609.svg" alt="image">
-                <img src="https://image.flaticon.com/icons/svg/1034/1034609.svg" alt="image">
-                <img src="https://image.flaticon.com/icons/svg/1034/1034609.svg" alt="image">
-                <img src="https://image.flaticon.com/icons/svg/1034/1034609.svg" alt="image">
-                <img src="https://image.flaticon.com/icons/svg/1034/1034609.svg" alt="image">
-            </div>
-
-        </div>
-
-    </div>
-  {% endif %}
 <!-- // end .section -->
 
     <div class="section">
