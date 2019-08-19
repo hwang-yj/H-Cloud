@@ -1,0 +1,135 @@
+<!doctype html>
+{% load static %} <html lang="en">
+<!--
+Page    : index / MobApp
+Version : 1.0
+Author  : Colorlib
+URI     : https://colorlib.com
+ -->
+<head>
+
+<title>H-Cloud Aquaman Project</title>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="Mobland - Mobile App Landing Page Template">
+<meta name="keywords" content="HTML5, bootstrap, mobile, app, landing, ios, android, responsive">
+<!-- Font -->
+<link rel="dns-prefetch" href="//fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css?family=Rubik:300,400,500" rel="stylesheet">
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="{%static 'css/bootstrap.min.css' %}">
+<!-- Themify Icons -->
+<link rel="stylesheet" href="{%static 'css/themify-icons.css' %}">
+<!-- Owl carousel -->
+<link rel="stylesheet" href="{%static 'css/owl.carousel.min.css' %}">
+<!-- Main css -->
+<link href="{%static 'css/style.css' %}" rel="stylesheet">
+</head>
+<body onload="initialize_map();initialize()" data-spy="scroll" data-target="#navbar" data-offset="30">
+<!-- Nav Menu -->
+<div class="nav-menu fixed-top">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<nav class="navbar navbar-dark navbar-expand-lg">
+				<a class="navbar-brand"></a><button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+				<div class="collapse navbar-collapse" id="navbar">
+					<ul class="navbar-nav ml-auto">
+						<li class="nav-item"><a class="nav-link active" href="#home">HOME <span class="sr-only">(current)</span></a></li>
+						 {% if user.is_authenticated %}
+						<li class="nav-item"><a class="nav-link" href="#gallery">GALLERY</a></li>
+						<li class="nav-item"><a class="nav-link" href="{% url 'logout' %}">LOGOUT</a></li>
+						 {% else %}
+						<li class="nav-item"><a class="nav-link" href="{% url 'login' %}">LOGIN</a></li>
+						 {% endif %}
+					</ul>
+				</div>
+				</nav>
+			</div>
+		</div>
+	</div>
+</div>
+<header class="bg-gradient" id="home">
+<div class="container mt-5">
+	<h1>H-Cloud Aquaman Project</h1>
+	<p class="tagline">
+		 Smart Sea Mobility
+	</p>
+</div>
+</header>
+{% if user.is_authenticated %}
+<div class="section light-bg" id="gallery">
+	<div class="container">
+		<div class="section-title">
+			<small>FISH DICTIONARY</small>
+			<h3>{{user.username}}'s Fish</h3>
+		</div>
+		<div class="img-gallery owl-carousel owl-theme">
+			<a href="http://192.168.43.177"><img alt="" src="https://image.flaticon.com/icons/svg/1034/1034609.svg" id="imgClickAndChange" onclick="changeImage()"/></a>
+			<img src="https://image.flaticon.com/icons/svg/1034/1034609.svg" alt="image" onclick="javascript()">
+			<img src="https://image.flaticon.com/icons/svg/1034/1034609.svg" alt="image">
+			<img src="https://image.flaticon.com/icons/svg/1034/1034609.svg" alt="image">
+			<img src="https://image.flaticon.com/icons/svg/1034/1034609.svg" alt="image">
+			<img src="https://image.flaticon.com/icons/svg/1034/1034609.svg" alt="image">
+			<img src="https://image.flaticon.com/icons/svg/1034/1034609.svg" alt="image">
+			<img src="https://image.flaticon.com/icons/svg/1034/1034609.svg" alt="image">
+			<img src="https://image.flaticon.com/icons/svg/1034/1034609.svg" alt="image">
+			<img src="https://image.flaticon.com/icons/svg/1034/1034609.svg" alt="image">
+		</div>
+	</div>
+</div>
+ {% endif %}
+
+    <div class="split left">
+    <div class="centered">
+      <img src="{%static client.png %}" alt="Avatar woman">
+      <h2>Jane Flex</h2>
+      <p>Some text.</p>
+    </div>
+  </div>
+
+  <div class="split right">
+    <div class="centered">
+      <img src="{%static 'logo.png' %}" alt="Avatar man">
+      <h2>John Doe</h2>
+      <p>Some text here too.</p>
+    </div>
+  </div>
+
+
+</div>
+
+</div>
+</div>
+<!-- // end .section -->
+<!-- // end .section -->
+<!-- // end .section -->
+<div class="section">
+
+</div>
+</div>
+</div>
+
+<!-- // end .section -->
+
+<footer class="my-5 text-center">
+<!-- Copyright removal is not prohibited! -->
+<p class="mb-2">
+<small>COPYRIGHT © 2017. ALL RIGHTS RESERVED. MOBAPP TEMPLATE BY <a href="https://colorlib.com">COLORLIB</a></small>
+</p>
+<small>
+<a href="#" class="m-2">PRESS</a>
+<a href="#" class="m-2">TERMS</a>
+<a href="#" class="m-2">PRIVACY</a>
+</small>
+</footer>
+<!-- jQuery and Bootstrap -->
+<script src="{%static 'js/jquery-3.2.1.min.js' %}"></script>
+<script src="{%static 'js/bootstrap.bundle.min.js' %}"></script>
+<!-- Plugins JS -->
+<script src="{%static 'js/owl.carousel.min.js' %}"></script>
+<!-- Custom JS -->
+<script src="{%static 'js/script.js' %}"></script>
+</body>
+</html>
