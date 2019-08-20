@@ -37,4 +37,4 @@ def upload(req):
             warning=req.POST['warning']
             person=req.POST['person']
             GPS=req.POST['GPS']
-    return render(req, 'blog/base.html')
+    return render(req, 'blog/base.html', {})
